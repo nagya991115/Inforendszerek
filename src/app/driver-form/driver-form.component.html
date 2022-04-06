@@ -1,0 +1,34 @@
+<div class="row">
+    <div class="col-md-6">
+        <form [formGroup]="driverForm">
+            <label for="nev">Név</label>
+            <input type="text" class="form-control" id="nev" formControlName="nev">
+            <div class="text-danger" *ngIf="f['nev'].invalid">
+                <small *ngIf="f['nev'].errors">A név formátuma nem megfelelő!</small>
+            </div>
+            <label for="szulido">Születési idő</label>
+            <input type="date" class="form-control" id="szulido" formControlName="szulido">
+            <div class="text-danger" *ngIf="f['szulido'].invalid">
+                <small *ngIf="f['szulido'].errors">A hatályos jogszabályok szerint a felvinni kívánt sofőr nem elég idős a vezetéshez.</small>
+            </div>
+            <label for="lakcim">Lakcím</label>
+            <input type="text" class="form-control" id="lakcim" formControlName="lakcim">
+            <div class="text-danger" *ngIf="f['lakcim'].invalid">
+                <small *ngIf="f['lakcim'].errors">Lakcím megadása kötelező!</small>
+            </div>
+            <label for="jogositvany_szama">Jogosítvány száma</label>
+            <input type="text" class="form-control" id="jogositvany_szama" formControlName="jogositvany_szama">
+            <div class="text-danger" *ngIf="f['jogositvany_szama'].invalid">
+                <small *ngIf="f['jogositvany_szama'].errors">Ehhez a jogosítványhoz már tartozik sofőr.</small>
+            </div>
+            <label for="jogositvany_ervenyesseg">Jogosítvány érvényessége</label>
+            <input type="date" class="form-control" id="jogositvany_ervenyesseg" formControlName="jogositvany_ervenyesseg">
+            <div class="text-danger" *ngIf="f['jogositvany_ervenyesseg'].invalid">
+                <small *ngIf="f['jogositvany_ervenyesseg'].errors">Érvényesség megadása kötelező!</small>
+            </div>
+            <button class="btn btn-primary mt-2" (click)="addDriver()" [disabled]="driverForm.invalid" >
+                Mentés
+            </button>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+<div class="row">
+    <div class="col-md-6">
+        <form [formGroup]="carForm">
+            <label for="rendszam">Rendszám</label>
+            <input type="text" class="form-control" id="rendszam" formControlName="rendszam">
+            <div class="text-danger" *ngIf="f['rendszam'].invalid">
+                <small *ngIf="f['rendszam'].errors">A rendszám formátuma nem megfelelő, vagy a rendszám már létezik az adatbázisban.</small>
+            </div>
+            <label for="tipus">Típus</label>
+            <input type="text" class="form-control" id="tipus" formControlName="tipus">
+            <div class="text-danger" *ngIf="f['tipus'].invalid">
+                <small *ngIf="f['tipus'].errors">A típus megnevezése túl rövid.</small>
+            </div>
+            <label for="uzemanyag">Üzemanyag</label>
+            <div>
+            <select  class="form-control" class="custom-select" id="uzemanyag" formControlName="uzemanyag">
+                <option>Benzin</option>
+                <option>Dízel</option>
+            </select>
+            <div class="text-danger" *ngIf="f['uzemanyag'].invalid">
+                <small *ngIf="f['uzemanyag'].errors">Az üzemanyagtípus megadása kötelező!</small>
+            </div>
+            </div>
+            <label for="fogyasztas">Fogyasztás</label>
+            <input type="number" class="form-control" id="fogyasztas" formControlName="fogyasztas">
+            <div class="text-danger" *ngIf="f['fogyasztas'].invalid">
+                <small *ngIf="f['fogyasztas'].errors">A fogyasztás értéke nem lehet 0 vagy annál kisebb!</small>
+            </div>
+            <label for="kmoraallas">Kilométeróra állás</label>
+            <input type="number" class="form-control" id="kmoraallas" formControlName="kmoraallas">
+            <div class="text-danger" *ngIf="f['kmoraallas'].invalid">
+                <small *ngIf="f['kmoraallas'].errors">A kilométeróra állása nem lehet negatív szám!</small>
+            </div>
+            <button class="btn btn-primary mt-2" (click)="addCar()" [disabled]="carForm.invalid" >
+                Mentés
+            </button>
+        </form>
+    </div>
+</div>

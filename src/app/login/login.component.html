@@ -1,0 +1,27 @@
+<div class="d-flex text-center">
+    <div id="formContent">
+      <div>
+        <h2 class="mt-2">Login</h2>
+      </div>
+      <form [formGroup]="loginForm" class="dynamic">
+        <div class="mb-3">
+            <label >Felhasználónév :</label>
+            <input type="text" class="form-control" formControlName="username" >
+            <div class="text-danger" *ngIf="f['username']?.invalid">
+                <small *ngIf="f['username']?.errors?.['required']">A felhasználónév mező nem hagyható üresen!</small>
+            </div>
+        </div>
+        <div class=" mb-3">
+            <label>Jelszó :</label>
+            <input type="password" class="form-control"  formControlName="password">
+            <div class="text-danger" *ngIf="f['password']?.invalid">
+                <small *ngIf="f['password']?.errors?.['required']">A jelszó mező nem hagyható üresen!</small>
+            </div>
+        </div>
+        <button type="button" class="btn btn-danger form-control" (click)="login()" 
+                [disabled]="loginForm?.invalid">
+            Bejelentkezés
+        </button>
+      </form> 
+    </div>
+  </div>

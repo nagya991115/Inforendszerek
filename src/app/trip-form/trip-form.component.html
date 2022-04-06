@@ -1,0 +1,64 @@
+<div class="row">
+    <div class="col-md-6">
+        <form [formGroup]="tripForm">
+            <label for="utazas_ideje">Utazás ideje</label>
+            <input type="date" class="form-control" id="utazas_ideje" formControlName="utazas_ideje">
+            <div class="text-danger" *ngIf="f['utazas_ideje'].invalid">
+                <small *ngIf="f['utazas_ideje'].errors">Az utazás idejének megadása kötelező!</small>
+            </div>
+            <label for="utazas_jellege">Utazás jellege</label>
+            <div>
+            <select  class="form-control" class="custom-select" id="utazas_jellege" formControlName="utazas_jellege">
+                <option>Magán</option>
+                <option>Céges</option>
+            </select>
+            </div>
+            <div class="text-danger" *ngIf="f['utazas_jellege'].invalid">
+                <small *ngIf="f['utazas_jellege'].errors">Az utazás jellegének megadása kötelező!</small>
+            </div>
+            <label for="indulas_helye">Indulás helye</label>
+            <input type="text" class="form-control" id="indulas_helye" formControlName="indulas_helye">
+            <div class="text-danger" *ngIf="f['indulas_helye'].invalid">
+                <small *ngIf="f['indulas_helye'].errors">Az indulás helyének megadása kötelező, és kötelezően hosszabbnak kell lennie 1 karakternél!</small>
+            </div>
+            <label for="erkezes_helye">Érkezés helye</label>
+            <input type="text" class="form-control" id="erkezes_helye" formControlName="erkezes_helye">
+            <div class="text-danger" *ngIf="f['erkezes_helye'].invalid">
+                <small *ngIf="f['erkezes_helye'].errors">Az érkezés helyének megadása kötelező, és kötelezően hosszabbnak kell lennie 1 karakternél!</small>
+            </div>
+            <label for="megtett_tavolsag">Megtett távolság</label>
+            <input type="number" class="form-control" id="megtett_tavolsag" formControlName="megtett_tavolsag">
+            <div class="text-danger" *ngIf="f['megtett_tavolsag'].invalid">
+                <small *ngIf="f['megtett_tavolsag'].errors">A megtett távolság megadása kötelező, és ez kötelezően nagyobb min 1 km.</small>
+            </div>
+
+            <label for="auto">Autó kiválasztása</label>
+            <div>
+            <select class="form-control" class="custom-select" id="auto" formControlName="auto">
+                <option *ngFor="let car of cars" [ngValue]="car">{{ car.rendszam }} {{ car.tipus }}</option>
+            </select>
+            </div>
+            <div class="text-danger" *ngIf="f['auto'].invalid">
+                <small *ngIf="f['auto'].errors">Autó kiválasztása kötelező!</small>
+            </div>
+            <label for="sofor">Sofőr kiválasztása</label>
+            <div>
+                <select class="form-control" class="custom-select" id="sofor" formControlName="sofor">
+                    <option *ngFor="let driver of drivers" [ngValue]="driver">Sofőr neve: {{ driver.nev }}, Jogosítvány száma: {{ driver.jogositvany_szama }}</option>
+                </select>
+            </div>
+            <div class="text-danger" *ngIf="f['sofor'].invalid">
+                <small *ngIf="f['sofor'].errors">Sofőr kiválasztása kötelező!</small>
+            </div>
+        </form>
+        <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="visszaut" id="visszaut" [checked]="visszaut" (change)="visszaut = !visszaut">
+            <label class="form-check-label" for="visszaut">
+              Visszaút regisztrálása
+            </label>
+        </div>
+        <button class="btn btn-primary mt-2" (click)="onClick()" [disabled]="tripForm.invalid" >
+            Mentés
+        </button>
+    </div>
+</div>

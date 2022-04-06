@@ -1,0 +1,40 @@
+<div class="containter">
+  <div class="row">
+    <div class="col-md-7">
+      <input type="text" class="form-control" [(ngModel)]="searchQuery" placeholder="Írd be azt a rendszámot, amit meg szeretnél keresni!">
+  </div>
+  <div class="col-md-2">
+      <button class="btn btn-primary" (click)="search()">Keresés</button>
+  </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <table class="table table-striped table-hover">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Rendszám</th>
+            <th scope="col">Típus</th>
+            <th scope="col">Üzemanyag</th>
+            <th scope="col">Fogyasztás (liter)</th>
+            <th scope="col">Kilométeróra állása (km)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let car of cars">
+              <td>{{car.id}}</td>
+              <td>{{car.rendszam}}</td>
+              <td>{{car.tipus}}</td>
+              <td>{{car.uzemanyag}}</td>
+              <td>{{car.fogyasztas}}</td>
+              <td>{{car.kmoraallas}}</td>
+              <td *ngIf="isAdmin"><button class = "btn btn-primary" (click)="navigateToCarForm(car.id)">Szerkesztés</button></td>
+          </tr>
+        </tbody>
+    </table>
+    </div>
+  </div>
+</div>
+
+
+  
